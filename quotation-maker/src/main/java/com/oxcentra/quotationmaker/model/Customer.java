@@ -15,12 +15,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Table(name="customer")
 public class Customer {
-    @Id
-    @Column(name="id")
-    private int id;
+
 
     @Column(name="name")
     private String name;
+
+    @Column(name="organization")
+    private String organization;
 
     @Column(name="position")
     private String position;
@@ -31,7 +32,9 @@ public class Customer {
     @Column(name="email")
     private String email;
 
-    @Column(name="phone")
+    @Id
+    @Column(name="id")
     private String phone;
+
 
 }
