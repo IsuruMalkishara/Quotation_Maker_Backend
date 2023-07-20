@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quotation Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add custom CSS styles for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th{
+            border: 1px solid black;
+            padding: 4px;
+            text-align: left;
+            font-size: 10px; /* Decrease font size for table data */
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 4px;
+            text-align: right;
+            font-size: 10px; /* Decrease font size for table data */
+        }
+
+        th {
+            background-color: #ccc;
+        }
+
+        td[colspan] {
+            text-align: center;
+        }
+
+        /* Align table data to the right within a cell */
+        td {
+            text-align: right;
+        }
+
+        td.left-align {
+            text-align: left;
+        }
+
+        /* style p text  */
+        .col-6 p {
+            font-size: 12px;
+        }
+
+        .col-5 p {
+            font-size: 12px;
+        }
+        .col-7 p {
+            font-size: 12px;
+        }
+        .col p {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div>
+<!--    customer data part started-->
+    <div class="row">
+    <div class="col-6">
+        <p>Date: <span th:text="${quotationData.quotation.date}"></span></p>
+        <p>Name: <span th:text="${quotationData.customer.name}"></span></p>
+        <p>Position: <span th:text="${quotationData.customer.position}"></span></p>
+        <p>Address: <span th:text="${quotationData.customer.address}"></span></p>
+        <p>Contact Number: <span th:text="${quotationData.customer.phone}"></span></p>
+        <p>Email Address: <span th:text="${quotationData.customer.email}"></span></p>
+    </div>
+        <div class="col-8">
+            <img src="..\src\main\resources\templates\logo.png" alt="Logo" width="150px" height="100px" style={{ margin:'5px' }}/>
+        </div>
+    </div>
+<!--    customer data part end-->
+<!--    quotation description and organization start-->
+    <div class="row">
+        <div class="col-5"><p>Description: <span th:text="${quotationData.quotation.description}"></span></p></div>
+        <div class="col-7"><p>Reference Number: <span th:text="${quotationData.referenceNumber}"></span>  <span th:text="${quotationData.customer.organization}"></span></p></div>
+    </div>
+    <!--    quotation description and organization end-->
+    <!--    product description start-->
+    <div class="row">
+        <div class="col"><p>Product Description: <span th:text="${quotationData.quotation.productDescription}"></span></p></div>
+
+    </div>
+    <!--    product description end-->
+    <!--    quotation table start-->
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th> No</th>
+                <th> Description</th>
+                <th> Rate Rs</th>
+                <th> Qty/SqFt</th>
+                <th> Value Rs</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Iterate over the products and display row numbers -->
+            <tr th:each="product, row : ${quotationData.products}">
+                <td th:text="${row.index + 1}"></td>
+                <td class="left-align" th:text="${product.description}"></td>
+                <td th:text="${product.rate}"></td>
+                <td th:text="${product.qty}"></td>
+                <td th:text="${product.value}"></td>
+            </tr>
+            <tr>
+                <td class="left-align" colspan="3">Total:</td>
+                <td th:text="${quotationData.quotation.totalQty}"></td>
+                <td th:text="${quotationData.quotation.grand}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--    quotation table end-->
+<!--    summary table start-->
+    <div class="row">
+        <table class="table">
+
+            <tbody>
+            <!-- Iterate over the products and display row numbers -->
+            <tr >
+                <td class="left-align">Grand</td>
+                <td th:text="${quotationData.quotation.grand}"></td>
+
+            </tr>
+            <tr>
+                <td class="left-align">Advanced</td>
+                <td th:text="${quotationData.quotation.advanced}"></td>
+
+            </tr>
+            <tr>
+                <td class="left-align">Balanced</td>
+                <td th:text="${quotationData.quotation.balanced}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+<!--    summary table end-->
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sciencetific Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add custom CSS styles for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid black;
+            padding: 4px;
+            text-align: left;
+            font-size: 8px; /* Decrease font size for table data */
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 4px;
+            text-align: right;
+            font-size: 8px; /* Decrease font size for table data */
+        }
+
+        th {
+            background-color: #ccc;
+        }
+
+        td[colspan] {
+            text-align: center;
+        }
+
+        /* Align table data to the right within a cell */
+        td {
+            text-align: right;
+        }
+
+        td.left-align {
+            text-align: left;
+        }
+
+        /* Align p text to center in the column */
+        .col p {
+            text-align: center;
+            font-size: 8px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div className='row'>
+        <div className='col' >
+        <p>Sciencetific Data</p>
+    </div>
+</div>
+<div className='row'>
+    <Table striped bordered className='table'>
+        <tbody>
+        <tr >
+            <th>Name</th>
+            <div th:each="product, row : ${products}">
+            <td class="left-align" key={product.id}  th:text="${product.name}"></td>
+            </div>
+        </tr>
+        <tr>
+            <th>Visible Light Transmittance</th>
+            <div th:each="product, row : ${products}">
+            <td key={product.id} th:text="${product.transmittance}"></td>
+            </div>
+        </tr>
+        <tr>
+            <th>Heat Loss/Visible Light Reflextive Exterior </th>
+            <div th:each="product, row : ${products}">
+            <td key={product.id} th:text="${product.exterior}"></td>
+            </div>
+        </tr>
+        <tr>
+            <th>Heat Gain/Visible Light Reflextive Interior </th>
+            <div th:each="product, row : ${products}">
+            <td key={product.id} th:text="${product.interior}"></td>
+            </div>
+        </tr>
+        </tbody>
+    </Table>
+</div>
+</div>
+</body>
+</html>

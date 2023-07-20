@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Measurement Table</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+    .measurement {
+
+            display: flex;
+            justify-content: space-between; /* Spread the tables evenly in the row */
+            flex-wrap: wrap; /* Allow tables to wrap if screen size is small */
+        }
+
+        .col-4 {
+            /*flex-basis: 32%;*/ /* Adjust the width to fit three tables in one row (32% x 3) */
+        }
+        /* Add custom CSS styles for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin:20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 1px;
+            text-align: right;
+            font-size: 6px; /* Decrease font size for table data */
+        }
+
+        th {
+            background-color: #ccc;
+        }
+
+        td[colspan] {
+            text-align: center;
+        }
+
+        /* Align table data to the right within a cell */
+        td {
+            text-align: right;
+        }
+
+        /* Align p text to center in the column */
+        .col-4 p {
+            text-align: center;
+            font-size: 10px;
+            margin-left:20px;
+            width:100%;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="measurement" th:each="tableRow : ${measurementTables}" >
+
+<div class="row" th:each="measurementTable, row : ${tableRow}">
+        <div class="col-4" >
+
+                <p th:text="${measurementTable.type}"></p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th> No</th>
+                <th> Height</th>
+                <th> Width</th>
+                <th> Pcs</th>
+                <th> SqFt</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Iterate over the products and display row numbers -->
+            <tr th:each="measurement, row : ${measurementTable.table}">
+                <td th:text="${measurement.id}"></td>
+                <td th:text="${measurement.height}"></td>
+                <td th:text="${measurement.width}"></td>
+                <td th:text="${measurement.pcs}"></td>
+                <td th:text="${measurement.sqFt}"></td>
+            </tr>
+            <tr>
+                <td colspan="3">Total:</td>
+                <td th:text="${measurementTable.totalPcs}"></td>
+                <td th:text="${measurementTable.totalSqFt}"></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+</div>
+
+</div>
+
+
+</body>
+</html>
